@@ -1,0 +1,3 @@
+[submodule "plugins/react-native-polar-ble-sdk"]
+	path = plugins/react-native-polar-ble-sdk
+	url = https://github.com/josephlarralde/react-native-polar-ble-sdk.git
