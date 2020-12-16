@@ -28,16 +28,8 @@ class DevicesPage extends React.Component {
   async componentDidMount() {
     BleScanner.addListener('state', state => {
       const { scanning, scanResults } = state;
-      // console.log('scanner state updated :');
-      // console.log(scanning);
-      // console.log(scanResults);
       this.setState({ scanning, scanResults });
     });
-
-    // Devices.addListener('state', () => {
-    //   this.setState({});
-    // });
-    // this.initialized = true;
   }
 
   componentWillUnmount() {
