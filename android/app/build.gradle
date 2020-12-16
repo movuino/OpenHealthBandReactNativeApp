@@ -120,6 +120,23 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+// found this trick to retrieve keystore password from keychain access on mac
+// here : https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/
+// referenced from : https://reactnative.dev/docs/signed-apk-android
+
+def getPassword(String currentUser, String keyChain) {
+    def stdout = new ByteArrayOutputStream()
+    def stderr = new ByteArrayOutputStream()
+    exec {
+        commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
+        standardOutput = stdout
+        errorOutput = stderr
+        ignoreExitValue true
+    }
+    //noinspection GroovyAssignabilityCheck
+    stdout.toString().trim()
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -150,15 +167,30 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        // to trigger this, run :
+        // "cd android && ./gradlew [assembleRelease/bundleRelease]"
+        // assembleRelease will generate an APK, and bundleRelease and android bundle
+        // (thanks to https://dev.to/zilurrane/generate-release-mode-apk-for-react-native-project-to-publish-on-playstore-5f78
+        // for mentioning assembleRelease which I didn't find in the official docs)
+        // or "npm run android --variant=release"
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword getPassword("larralde", "ohb-rn-app.keystore")
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword getPassword("larralde", "ohb-rn-app.keystore")
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
+            signingConfig signingConfigs.release
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
