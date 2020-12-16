@@ -14,5 +14,3 @@ const Wrapper = () => (
 );
 
 AppRegistry.registerComponent(appName, () => Wrapper);
-
-// AppRegistry.registerComponent(appName, () => App);
