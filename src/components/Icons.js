@@ -50,6 +50,32 @@ class SignalIcon extends React.Component {
   }
 };
 
+////////// ADD BUTTON
+
+class AddIcon extends React.Component {
+  render() {
+    const size = this.props.size || defaultSize;
+    const color = this.props.color || defaultColor;
+    const strokeWidth = this.props.strokeWidth || defaultStrokeWidth;
+    const sizeRatio = 100 / size;
+    const radius = 50 - (strokeWidth * sizeRatio * 0.5);
+
+    return (
+      <Svg
+        width={size} height={size}
+        viewBox="0 0 100 100"
+        fill={color}
+        stroke={color}
+        strokeLinecap="round"
+        strokeWidth={strokeWidth * sizeRatio}>
+        <Circle cx="50" cy="50" r={radius} fill="none"/>
+        <Line x1="30" y1="50" x2="70" y2="50"/>
+        <Line x1="50" y1="30" x2="50" y2="70"/>
+      </Svg>
+    );
+  }
+};
+
 ////////// RECORD BUTTON
 
 class RecordIcon extends React.Component {
@@ -259,6 +285,7 @@ class AnimatedDotsIcon extends React.Component {
 
 export default {
   signal: SignalIcon,
+  add: AddIcon,
   record: RecordIcon,
   share: ShareIcon,
   back: BackIcon,

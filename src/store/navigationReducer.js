@@ -8,14 +8,15 @@ if (next layout != actual layout) {
 }
 */
 
-import routes from '../routes';
-
 const defaultRoute = 'devices';
 
 const initialState = {
   currentRoute: defaultRoute,
   nextRoute: defaultRoute,
   lastRequestedRoute: defaultRoute,
+  // todo : update and check this flag in pages
+  // for android backHandler management
+  canGoBack: false,
 };
 
 export default (state = initialState, action) => {

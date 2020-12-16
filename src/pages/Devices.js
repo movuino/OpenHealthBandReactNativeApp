@@ -81,10 +81,12 @@ class DevicesPage extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <View style={{ flex: 1 }}>
+          {
           <View
             style={{
               flex: 0,
               margin: 10,
+              marginTop: 20,
               alignSelf: 'center',
               justifyContent: 'center',
             }}>
@@ -95,6 +97,7 @@ class DevicesPage extends React.Component {
                 this.setState({ displayScan: true });
               }}/>
           </View>
+          }
 
           <ScrollView
             style={{
@@ -113,6 +116,13 @@ class DevicesPage extends React.Component {
             }}>
             <BottomMenu
               items={[
+                // {
+                //   icon: 'add',
+                //   onPress: async () => {
+                //     await BleScanner.startScan();
+                //     this.setState({ displayScan: true });
+                //   },
+                // },
                 {
                   icon: 'record',
                   onPress: () => {

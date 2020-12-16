@@ -10,9 +10,7 @@ class Share extends React.Component {
   }
 
   componentDidMount() {
-    // setTimeout(() => {
-    //   this.props.setNextRoute('devices');
-    // }, 1000);
+    
   }
 
   render() {

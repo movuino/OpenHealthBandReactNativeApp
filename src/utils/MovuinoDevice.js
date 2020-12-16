@@ -161,26 +161,6 @@ function onNewData(stream, data) {
   if (device.streams[stream].enabled) {
     device.emit(`stream:${stream}:data`, data);
   }
-
-  // return;
-
-  // if (!device.streams[stream].enabled) return;
-
-  // if (!device.streams[stream].streaming) {
-  //   const now = Date.now();
-  //   // const delta = timeStamp - now;
-  //   device.setStream(stream, {
-  //     streaming: true,
-  //     localStartDate: now,
-  //     startDate: timeStamp,
-  //     lastDate: timeStamp,
-  //     delta: timeStamp - now,
-  //   });  
-  // } else {
-  //   device.emit(`stream:${stream}:data`, data);
-  //   device.streams[stream].onNewData(data);
-  //   device.setStream(stream, { lastDate: timeStamp });
-  // }
 }
 
 ////////// MOVUINO DEVICE CLASS

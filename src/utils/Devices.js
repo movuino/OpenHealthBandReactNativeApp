@@ -134,42 +134,6 @@ class Devices {
         stream.startRecording(now, s.filestream);
       });
     });
-
-    /*
-    this.getActiveStreams().forEach(s => {
-      const { type, model, id } = this.devices.get(s.id).scanResult.meta;
-      const filename = `${type}-${model}-${id}-${s.stream}-${getStringDate()}.csv`;
-
-      RNFetchBlob.fs.writeStream(`${destinationFolder}/${filename}`, 'utf8')
-      .then(stream => {
-        stream.write('ms_date,ecg_uv_value,hr_value\n');
-
-        const listener = data => {
-          if (!this.receivedFirstEcgFrame) {
-            this.firstTimeStamp = timeStamp;
-            this.receivedFirstEcgFrame = true;
-          } else {
-            let date = this.previousTimeStamp - this.firstTimeStamp;
-            const interval = (timeStamp - this.previousTimeStamp) / samples.length;
-
-            const hr = this.hrDataUpdated ? this.currentHrData.hr : 0;
-            this.hrDataUpdated = false;
-
-            for (let i = 0; i < samples.length; i++) {
-              date += interval;
-              this.recordStream.write(`${date * 1e-6},${samples[i]},${i === 0 ? hr : 0}\n`);
-            }
-          }
-
-          this.previousTimeStamp = timeStamp;
-        };
-
-        this.devices.get(s.id).addListener(`stream:${s.stream}:data`, listener);
-        this.recorders.set(s, { stream, listener });
-        // this.setState({ recording: true });
-      });
-    });
-    //*/
   }
 
   stopRecording() {
@@ -177,64 +141,6 @@ class Devices {
       stream.stopRecording();
     });
   }
-
-  // from OldApp :
-
-  /*
-  startRecording() {
-    const destinationFolder = RNFetchBlob.fs.dirs.DownloadDir;
-    const filename = `Polar_${getStringDate()}.csv`;
-    RNFetchBlob.fs.writeStream(`${destinationFolder}/${filename}`, 'utf8')
-    .then((stream) => {
-      this.recordStream = stream;
-      this.recordStream.write('ms_date,ecg_uv_value,hr_value\n');
-      this.receivedFirstEcgFrame = false;
-      this.hrDataUpdated = false;
-      this.setState({
-        recording: true,
-      });
-    });
-  }
-
-  stopRecording() {
-    this.recordStream.close();
-    this.recordStream = null;
-    this.setState({
-      recording: false,
-    });
-  }
-
-  handlePolarEcgData(data) {
-    const { samples, timeStamp } = data;
-
-    if (!this.state.ecgReady) {
-      this.setState({ ecgReady: true });
-    }
-
-    if (this.state.recording && this.recordStream !== null) {
-
-      if (!this.receivedFirstEcgFrame) {
-        this.firstTimeStamp = timeStamp;
-        this.receivedFirstEcgFrame = true;
-      } else {
-        let date = this.previousTimeStamp - this.firstTimeStamp;
-        const interval = (timeStamp - this.previousTimeStamp) / samples.length;
-
-        const hr = this.hrDataUpdated ? this.currentHrData.hr : 0;
-        this.hrDataUpdated = false;
-
-        for (let i = 0; i < samples.length; i++) {
-          date += interval;
-          this.recordStream.write(`${date * 1e-6},${samples[i]},${i === 0 ? hr : 0}\n`);
-        }
-      }
-
-      this.previousTimeStamp = timeStamp;
-    }
-
-    this.signalPlotter.addSamples(samples);
-  }
-  //*/
 };
 
 export default new Devices();

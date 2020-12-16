@@ -3,6 +3,10 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 
+// PermissionsAndroid.check checks if the user authorized what's in the manifest.xml
+// if not, we run PermissionsAndroid.request to give the users a chance to change
+// their mind
+
 export const checkAndRequestPermissions = async () => {
   if (Platform.OS === 'android' && Platform.Version >= 23) {
     let coarsePerm = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
@@ -31,6 +35,8 @@ export const checkAndRequestPermissions = async () => {
     }
     if (!finePerm) { /* notify the user that the app won't work properly */ }
 
+    // this one is not documented in RN docs but is necessary for running in the background,
+    // as mentioned in react-native-ble-manager's README
     let backgroundPerm = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_BACKGROUND_LOCATION);
     if (backgroundPerm !== PermissionsAndroid.RESULTS.GRANTED) {
       backgroundPerm = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_BACKGROUND_LOCATION, {

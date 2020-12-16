@@ -137,26 +137,6 @@ function onNewData(stream, data) {
   if (device.streams[stream].enabled) { // otherwise we would emit hr permanently
     device.emit(`stream:${stream}:data`, newData);
   }
-
-  // return;
-
-  // if (!device.streams[stream].enabled) return;
-
-  // if (!device.streams[stream].streaming) {
-  //   const now = Date.now();
-  //   // const delta = timeStamp - now
-  //   device.setStream(stream, {
-  //     streaming: true,
-  //     localStartDate: now,
-  //     startDate: timeStamp,
-  //     lastDate: timeStamp,
-  //     delta: timeStamp - now,
-  //   });  
-  // } else {
-  //   device.emit(`stream:${stream}:data`, newData);
-  //   device.streams[stream].onNewData(newData);
-  //   device.setStream(stream, { lastDate: timeStamp });
-  // }
 }
 
 ////////// POLAR DEVICE CLASS :
