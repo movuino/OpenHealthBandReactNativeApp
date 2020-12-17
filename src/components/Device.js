@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, Text, View } from 'react-native';
 import DeleteButton from './DeleteButton';
-import DeviceSwitch from './DeviceSwitch';
 import Stream from './Stream';
 import { descriptions } from '../utils/streams';
 
