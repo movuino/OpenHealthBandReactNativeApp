@@ -21,7 +21,3 @@ You will need XCode and CocoaPods installed to build a React Native project.
 If you have Xcode version 12 or later, you will also need Carthage (a Swift
 package management alternative to CocoaPods) to rebuild Polar's SDK,
 and **provide your admin password at some point of the process**.
-
-#### TODO's
-
-* debug iOS version (latest plugin version not tested yet)
