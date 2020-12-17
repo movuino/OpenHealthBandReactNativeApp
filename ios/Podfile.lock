@@ -67,7 +67,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - MultiplatformBleAdapter (0.1.6)
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
@@ -239,9 +238,6 @@ PODS:
   - React-jsinspector (0.63.2)
   - react-native-ble-manager (7.3.1):
     - React
-  - react-native-ble-plx (2.0.1):
-    - MultiplatformBleAdapter (= 0.1.6)
-    - React
   - react-native-polar-ble-sdk (1.0.0):
     - React
   - React-RCTActionSheet (0.63.2):
@@ -354,7 +350,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-ble-manager (from `../node_modules/react-native-ble-manager`)
-  - react-native-ble-plx (from `../node_modules/react-native-ble-plx`)
   - react-native-polar-ble-sdk (from `../plugins/react-native-polar-ble-sdk`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -384,7 +379,6 @@ SPEC REPOS:
     - Flipper-PeerTalk
     - Flipper-RSocket
     - FlipperKit
-    - MultiplatformBleAdapter
     - OpenSSL-Universal
     - YogaKit
 
@@ -421,8 +415,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-ble-manager:
     :path: "../node_modules/react-native-ble-manager"
-  react-native-ble-plx:
-    :path: "../node_modules/react-native-ble-plx"
   react-native-polar-ble-sdk:
     :path: "../plugins/react-native-polar-ble-sdk"
   React-RCTActionSheet:
@@ -472,7 +464,6 @@ SPEC CHECKSUMS:
   FlipperKit: bc68102cd4952a258a23c9c1b316c7bec1fecf83
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  MultiplatformBleAdapter: 652f47ecd7f5036756517cf66833210709a72eab
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
@@ -485,7 +476,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 8ca588cc921e70590820ce72b8789b02c67cce38
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
   react-native-ble-manager: 73a2c5d7ca510866d2bdf67d56bec42bd76c004f
-  react-native-ble-plx: d8dcca81ecc617eda824a4ace85f7ffd55d90c6c
   react-native-polar-ble-sdk: 0c87162c06355cd3aa1cc7307d14cf15a773e30c
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
