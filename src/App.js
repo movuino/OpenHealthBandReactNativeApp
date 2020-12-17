@@ -1,8 +1,9 @@
 import React from 'react';
-import { BackHandler, Dimensions, Easing, View } from 'react-native';
+import { BackHandler, Dimensions, Platform, Easing, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setNextRoute } from './store/navigationActions';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import AnimatedView from './components/AnimatedView';
 import Toast from './components/Toast';
@@ -108,8 +109,15 @@ class App extends React.Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: 'black' }}>
-        { pages }
-        <Toast ref={instance => { this.toast = instance; }}/>
+        <View
+          style={{
+            flex: 1,
+            marginTop: Platform.OS === 'android' ? 0 : getStatusBarHeight(),
+            backgroundColor: 'red',
+          }}>
+          { pages }
+          <Toast ref={instance => { this.toast = instance; }}/>
+        </View>
       </View>
     );
   }
