@@ -105,7 +105,8 @@ class Devices {
     const activeStreams = this.getActiveStreams();
     if (activeStreams.length === 0) return;
 
-    const folder = `${RNFetchBlob.fs.dirs.DownloadDir}/${getStringDate()}`;
+    // const folder = `${RNFetchBlob.fs.dirs.DownloadDir}/${getStringDate()}`;
+    const folder = `${RNFetchBlob.fs.dirs.DocumentDir}/${getStringDate()}`;
 
     RNFetchBlob.fs.mkdir(folder)
     .then(() => {
