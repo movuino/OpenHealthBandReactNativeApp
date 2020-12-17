@@ -90,7 +90,7 @@ export default class Stream extends React.Component {
       <View style={{ flex: 1, width: '100%' }}>
 
         <View style={{ flex: 1, flexDirection: 'row', width: '100%' }}>
-          <View style={{ width: 100, flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ width: 110, flexDirection: 'row', alignItems: 'center' }}>
             <Switch
               onValueChange={() => {
                 const stream = this.props.device.streams[this.props.stream];
@@ -106,6 +106,7 @@ export default class Stream extends React.Component {
               }/>
             <Text
               style={{
+                marginLeft: 5,
                 color: 'black',
                 fontSize: 16,
                 fontFamily: Platform.OS === 'android' ? 'monospace' : 'Courier'
