@@ -103,7 +103,8 @@ function onDisconnected({ peripheral }) {
 }
 
 function onValueUpdate(data) {
-  const { peripheral, characteristic, value } = data;
+  const { peripheral, value } = data;
+  const characteristic = data.characteristic.toLowerCase();
   const id = peripheral;
 
   const buffer = new Uint8Array(value).buffer;
@@ -114,28 +115,28 @@ function onValueUpdate(data) {
   const sample = {};
 
   switch (characteristic) {
-    case services.ppg.characteristics.rawPpg.uuid:
+    case services.ppg.characteristics.rawPpg.uuid.toLowerCase():
       stream = 'ppg';
       view = new DataView(buffer, 4, 12);
       sample.red = view.getUint32(0);
       sample.ir = view.getUint32(4);
       sample.green = view.getUint32(8);
       break;
-    case services.imu.characteristics.accel.uuid:
+    case services.imu.characteristics.accel.uuid.toLowerCase():
       stream = 'acc';
       view = new DataView(buffer, 4, 6);
       sample.x = view.getInt16(0);
       sample.y = view.getInt16(2);
       sample.z = view.getInt16(4);
       break;
-    case services.imu.characteristics.gyro.uuid:
+    case services.imu.characteristics.gyro.uuid.toLowerCase():
       stream = 'gyr';
       view = new DataView(buffer, 4, 6);
       sample.x = view.getInt16(0);
       sample.y = view.getInt16(2);
       sample.z = view.getInt16(4);
       break;
-    case services.imu.characteristics.mag.uuid:
+    case services.imu.characteristics.mag.uuid.toLowerCase():
       stream = 'mag';
       view = new DataView(buffer, 4, 6);
       sample.x = view.getInt16(0);
@@ -217,15 +218,16 @@ class MovuinoDevice extends Device {
     const { id } = this.scanResult;
     this.notifications = {};
     const peripheralData = await BleManager.retrieveServices(id);
+    // console.log(peripheralData);
 
     peripheralData.characteristics.forEach(c => {
       Object.keys(services).forEach(sk => {
-        if (c.service === services[sk].uuid) {
-          // console.log(`found service ${c.service}`);
+        if (c.service.toLowerCase() === services[sk].uuid) {
+          console.log(`found service ${c.service}`);
           Object.keys(services[sk].characteristics).forEach(ck => {
             const currentCharacteristic = services[sk].characteristics[ck];
-            if (c.characteristic === currentCharacteristic.uuid) {
-              // console.log(`found characteristic ${c.characteristic}`);
+            if (c.characteristic.toLowerCase() === currentCharacteristic.uuid) {
+              console.log(`found characteristic ${c.characteristic}`);
               const { service, characteristic } = c;
               this.notifications[currentCharacteristic.stream] = {
                 service,
